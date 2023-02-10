@@ -23,14 +23,12 @@ jobs:
 #     - name: Check format with ktlint
 #       run: ./gradlew ktlintFormat
 
-    - name: Restore gradle.properties
+    - name: Set mapbox token
       env:
         MAPBOX_DOWNLOADS_TOKEN: ${{ secrets.MAPBOX_DOWNLOADS_TOKEN }}
       shell: bash
       run: |
-        mkdir -p ~/.gradle/
-        echo "::set-env name=GRADLE_USER_HOME::$HOME/.gradle"
-        echo MAPBOX_DOWNLOADS_TOKEN=${MAPBOX_DOWNLOADS_TOKEN} > ~/.gradle/gradle.properties
+        echo "MAPBOX_DOWNLOADS_TOKEN=${MAPBOX_DOWNLOADS_TOKEN}" >> gradle.properties
       
     - name: Build
       run: ./gradlew buildDebug
