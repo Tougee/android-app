@@ -27,8 +27,6 @@ jobs:
       env:
         mapboxToken: ${{ secrets.MAPBOX_DOWNLOADS_TOKEN }}
       run: |
-        ls
-        echo $mapboxToken
         echo MAPBOX_DOWNLOADS_TOKEN=$mapboxToken >> gradle.properties
     - name: Build
-      run: ./gradlew build
+      run: ./gradlew buildDebug
