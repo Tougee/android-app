@@ -25,7 +25,7 @@ jobs:
 
     - name: Set mapbox token
       env:
-        MAPBOX_DOWNLOADS_TOKEN: ${{ secrets.MAPBOX_DOWNLOADS_TOKEN }}
+        MAPBOX_DOWNLOADS_TOKEN: ${{ vars.MAPBOX_TEST_TOKEN }}
       shell: bash
       run: |
         echo "MAPBOX_DOWNLOADS_TOKEN=${MAPBOX_DOWNLOADS_TOKEN}" >> gradle.properties
