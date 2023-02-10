@@ -25,8 +25,12 @@ jobs:
 
     - name: Restore gradle.properties
       env:
-        mapboxToken: ${{ secrets.MAPBOX_DOWNLOADS_TOKEN }}
+        MAPBOX_DOWNLOADS_TOKEN: ${{ secrets.MAPBOX_DOWNLOADS_TOKEN }}
+      shell: bash
       run: |
-        echo MAPBOX_DOWNLOADS_TOKEN=$mapboxToken >> gradle.properties
+        mkdir -p ~/.gradle/
+        echo "::set-env name=GRADLE_USER_HOME::$HOME/.gradle"
+        echo MAPBOX_DOWNLOADS_TOKEN=${MAPBOX_DOWNLOADS_TOKEN} > ~/.gradle/gradle.properties
+      
     - name: Build
       run: ./gradlew buildDebug
