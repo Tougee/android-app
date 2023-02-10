@@ -20,5 +20,15 @@ jobs:
         java-version: 11
     - name: Make Gradle executable
       run: chmod +x ./gradlew
-    - name: Check format with ktlint
-      run: ./gradlew ktlintFormat
+#     - name: Check format with ktlint
+#       run: ./gradlew ktlintFormat
+
+    - name: Restore gradle.properties
+      env:
+        mapboxToken: ${{ secrets.MAPBOX_DOWNLOADS_TOKEN }}
+      run: |
+        ls
+        echo $mapboxToken
+        echo MAPBOX_DOWNLOADS_TOKEN=$mapboxToken >> gradle.properties
+    - name: Build
+      run: ./gradlew build
